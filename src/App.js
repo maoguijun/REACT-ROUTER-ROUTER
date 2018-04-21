@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {BrowserRouter as Router,Route,Link } from 'react-router-dom';
 import logo from "./logo.svg";
 import "./App_.css";
 import { componentList, componentNameList } from "./components/route/route";
@@ -21,16 +22,19 @@ class App extends Component {
   render() {
     const { btnk } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <Button
-            list={componentNameList}
-            onClick={e => this.selectComponent(e.target.value)}
-            current={btnk}
-          />
-        </header>
-        <div className="App-intro">{componentList[btnk]}</div>
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <Button
+              list={componentNameList}
+              onClick={e => this.selectComponent(e.target.value)}
+              current={btnk}
+            >
+            </Button>
+          </header>
+          <div className="App-intro">{componentList[btnk]}</div>
+        </div>
+        </Router>
     );
   }
 }
