@@ -1,0 +1,10 @@
+.buttonS{
+  min-width: 100px;
+  height:45px;
+  padding:8px;
+  margin-left:16px;
+  /* display: inline-block; */
+  border-color: #fff;
+  color:rgb(82, 98, 190);
+  font-size: 16px;
+}
