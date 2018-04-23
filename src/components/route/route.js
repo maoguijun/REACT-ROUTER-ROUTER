@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router,Route,Link } from 'react-router-dom';
+import {BrowserRouter as Router,Route,Link,Redirect } from 'react-router-dom';
 import { hashHistory } from 'react-router';
 import { comment } from "../../config";
 import HelloWord from "../demos/1_HelloWord";
@@ -32,64 +32,58 @@ import ModalGallery from "../router-demos/12_ModalGallery";
 
 
 export const componentList = {
-  HelloWord: <Route path='/HelloWord' component={HelloWord} />,
   // HelloWord: <HelloWord />,
-  JSX: <Route path='/JSX' component={JSX} />,
-  // JSX: <JSX />,
-  Tick: <Route path='/Tick' component={Tick} />,
-  // Tick: <Tick />,
-  // Comment: <Route path='/Comment' component={Comment} />,
+  HelloWord: HelloWord ,
+  JSX: JSX ,
+  Tick: Tick ,
   Comment: (
     <Comment date={comment.date} text={comment.text} author={comment.author} />
   ),
-  // List: <Route path='/List' component={List} />,
   List: <List numbers={comment.numbers} />,
-  TextArea: <Route path='/TextArea' component={TextArea} />,
-  // TextArea: <TextArea />,
-  Welcome: <Route path='/Welcome' component={Welcome} />,
-  // Welcome: <Welcome />,
-  Clock: <Route path='/Clock' component={Clock} />,
-  // Clock: <Clock />,
-  Toggle: <Route path='/Toggle' component={Toggle} />,
-  // Toggle: <Toggle />,
-  LoginControl: <Route path='/LoginControl' component={LoginControl} />,
-  // LoginControl: <LoginControl />,
-  // Key: <Route path='/Key' component={Key} />,
+  TextArea:TextArea ,
+  Welcome: Welcome ,
+  Clock: Clock ,
+  Toggle: Toggle ,
+  LoginControl:LoginControl ,
   Key: <Key posts={comment.posts} />,
-  Select: <Route path='/Select' component={Select} />,
-  // Select: <Select />,
-  SignUp: <Route path='/SignUp' component={SignUp} />,
-  // SignUp: <SignUp />,
-  Calculator: <Route path='/Calculator' component={Calculator} />,
-  // Calculator: <Calculator />,
-  RenderProps: <Route path='/RenderProps' component={RenderProps} />,
-  // RenderProps: <RenderProps />,
-  RouterBasic: <Route path='/RouterBasic' component={RouterBasic} />,
-  // RouterBasic: <RouterBasic />,
-  UrlParams: <Route path='/UrlParams' component={UrlParams} />,
-  // UrlParams: <UrlParams />,
-  Authentication: <Route path='/Authentication' component={Authentication} />,
-  // Authentication: <Authentication />,
-  CustomLink: <Route path='/CustomLink' component={CustomLink} />,
-  // CustomLink: <CustomLink />,
-  PreventNav: <Route path='/PreventNav' component={PreventNav} />,
-  // PreventNav: <PreventNav />,
-  NotMatch: <Route path='/NotMatch' component={NotMatch} />,
-  // NotMatch: <NotMatch />,
-  Recursive: <Route path='/Recursive' component={Recursive} />,
-  // Recursive: <Recursive />,
-  Ambiguous: <Route path='/Ambiguous' component={Ambiguous} />,
-  // Ambiguous: <Ambiguous />,
-  SideBar: <Route path='/SideBar' component={SideBar} />,
-  // SideBar: <SideBar />,
-  RouteConfig: <Route path='/RouteConfig' component={RouteConfig} />,
-  // RouteConfig: <RouteConfig />,
-  Animation: <Route path='/Animation' component={Animation} />,
-  // Animation: <Animation />,
-  ModalGallery: <Route path='/ModalGallery' component={ModalGallery} />
-  // ModalGallery: <ModalGallery />
-  
+  Select: Select ,
+  SignUp: SignUp ,
+  Calculator:Calculator ,
+  RenderProps: RenderProps ,
+  RouterBasic: RouterBasic ,
+  UrlParams:UrlParams ,
+  Authentication:Authentication ,
+  CustomLink: CustomLink ,
+  PreventNav:PreventNav ,
+  NotMatch: NotMatch ,
+  Recursive:Recursive ,
+  Ambiguous: Ambiguous ,
+  SideBar: SideBar ,
+  RouteConfig: RouteConfig ,
+  Animation:Animation ,
+  ModalGallery: ModalGallery ,
+  Redirect: <Route exact path='/' render={()=><Redirect to='/HelloWord'/>} />
 };
+
+for(const key in componentList){
+  if(componentList.hasOwnProperty(key)){
+      if(key==='Redirect'){
+        continue;
+      }
+    componentList[key]=<Route  path={`/${key}`} component={componentList[key]} />;
+    if(key==="Comment"){
+      componentList[key]=(
+        <Comment date={comment.date} text={comment.text} author={comment.author} />
+      );
+    }else if(key==='List'){
+      componentList[key]=<List numbers={comment.numbers} />;
+    }else if(key==='Key'){
+      componentList[key]=<Key posts={comment.posts} />;
+    }
+    
+  }
+}
+
 export const componentNameList = [
   "HelloWord",
   "JSX",
@@ -119,3 +113,7 @@ export const componentNameList = [
   "Animation",
   "ModalGallery"
 ];
+
+
+
+
