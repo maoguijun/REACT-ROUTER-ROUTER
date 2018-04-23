@@ -8,15 +8,16 @@ export const Button = props => {
   console.log(props.current);
   if (props.list) {
     return props.list.map(item => (
-        <Link to={`/${props.current}`}>
-          <button
+        <Link to={`/${item}`} >
+          <button 
             className="buttonS"
             style={props.current === item ? { color: "#e4393c" } : {}}
             key={item}
             value={item}
             {...props_}
           >
-            {item}
+            {item} 
+          
           </button>
         </Link>
     ));
