@@ -15,12 +15,12 @@ const Recursive=()=>(
 const find=(id)=>PEEPS.find(p=>p.id==id);
 
 const Person=({match})=>{
-    const person=find(match.params.id);
+    const person=find(match&&match.params&&match.params.id);
     return (
         <div>
-            <h3>{person.name}'s friends</h3>
+            <h3>{person&&person.name}'s friends</h3>
             <ul>
-                {person.friends.map((id)=>(
+                {person&&person.friends&&person.friends.map((id)=>(
                     <li key={id}><Link to={`${match.url}/${id}`}>{find(id).name}</Link></li>
                 ))}
             </ul>
