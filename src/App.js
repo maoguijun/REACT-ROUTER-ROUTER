@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { browserHistory } from 'react-router';
 import {BrowserRouter as Router,Route,Link } from 'react-router-dom';
 import logo from "./logo.svg";
 import "./App_.css";
-import { componentList, componentNameList } from "./components/route/route";
+import { componentList, componentNameList} from "./components/route/route";
 import { Button } from "./components/Button";
-import { user } from "./components/demos/2_JSX"; // 这里不导入这个user 看看会发生什么？为什么？ // JSX的课后问题
+import { user } from "./components/demos/2_JSX"; 
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class App extends Component {
     this.state = {
       btnk: "HelloWord"
     };
+    
   }
   selectComponent = value => {
     console.log(value);
@@ -32,7 +34,9 @@ class App extends Component {
             >
             </Button>
           </header>
-          <div className="App-intro">{componentList[btnk]}</div>
+          <div className="App-intro">
+              {componentList[btnk]}
+          </div>
         </div>
         </Router>
     );
